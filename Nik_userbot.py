@@ -59,8 +59,8 @@ def _env_int(name, default=0):
 # ╔══════════════════════════════════════════════════════════════╗
 # ║   ✏️  SIRF YAHAN VALUES PASTE KARO — baaki kuch nahi           ║
 # ╚══════════════════════════════════════════════════════════════╝
-PASTE_API_ID = 30969852                 # ← apna API_ID (number)          e.g. 1234567
-PASTE_API_HASH = "8ed99aef26527da34b0dd5e55885c11b"              # ← apna API_HASH (32 chars)      e.g. "8ed99aef26527da34b0dd5e55885c11b"
+PASTE_API_ID = 30969852                # ← apna API_ID (number)          e.g. 1234567
+PASTE_API_HASH = "8ed99aef26527da34b0dd5e55885c11b"              # ← apna API_HASH (32 chars)      e.g. "32bdfcd4..."
 PASTE_OWNER_ID = 5076760701               # ← apna telegram user id         e.g. 5076760701
 PASTE_SESSION_STRING = "1BVtsOMEBuxizrU8Ez4Psg_conXy6EBeoHbMhgw93ItcavnEIJmYlzuCg2_XYuTXwQtaoyEw2kzCFr-pUcw6L4gnqaVbPbm3BbDT9rJNQUb4Dpxt1c7gilej2K6gWjljCKPY0iogUvoUA6tFyWedAiIwdr3kSePkSAB369706BpmXkVFOOqOi-4Gs5UAHl5CWWPvwnEftpHuBDfORkkeprWZrrrtoiTsZkUeLx1S2oS7_rzEU87LqmoqOF8HOaY9mRiWXslAtbw2AdLGXx2qCqiSqf-dhgDvyrFiBXZGHQE8nvC87pg_jh-RG_pn6BFyoh3KEVdy_biZqXpFhCM-Je_LZ-vGbR9o="        # ← StringSession yahan           e.g. "1ApWapzMBuw..."
 
@@ -146,6 +146,7 @@ class _BotProxy:
 # Isliye text me pack ka hi alt-emoji rakha jaata hai + us par entity lagti hai.
 # Ids 5 TXT packs se li gayi hain (248 unique alt emoji / 843 documents).
 #   band karna ho →  PREMIUM_EMOJI=0
+
 PREMIUM_EMOJI = (os.environ.get("PREMIUM_EMOJI") or "1").strip().lower() not in (
     "0", "off", "false", "no")
 
@@ -235,6 +236,87 @@ _NIK_EMOJI_IDS = {
     "🫥": 5978863349574667695, "🫦": 5246916221286259480, "🫧": 5249398308656418081,
     "🫶": 6237839234594511215, "🫷": 5249461642244165680,
 }
+
+# ── 8 packs (1369 docs · 324 alts) se aaye naye emoji ─────────
+# article / premium design / normal chat — sab isi map se chalte hain
+_NIK_EMOJI_IDS.update({
+    "☀️": 5400046004550532116,
+    "⚡️": 5260345759387127131,
+    "⚽️": 5260586616858117316,
+    "✌": 5402108203032937818,
+    "✔️": 5260384637431087880,
+    "❄️": 5258111865292099953,
+    "❤‍🔥": 6201510017498095443,
+    "⬜": 6199330184156421477,
+    "〽️": 6201469829489105722,
+    "🃏": 5447657898870086204,
+    "🇮🇹": 5258207746142017360,
+    "🇯🇵": 6201666955603089738,
+    "🌑": 6199511131128601240,
+    "🍂": 6199506849046206393,
+    "🍞": 5402106927427650530,
+    "🍢": 5400354039605000375,
+    "🍬": 5402398151980121369,
+    "🍹": 6199327770384802451,
+    "🍽": 5399959177491674169,
+    "🎈": 5402135454600429028,
+    "🎢": 5260537040050621197,
+    "🎧": 6199728190185805725,
+    "🎶": 6199638515563632554,
+    "🏛️": 6199390202029414321,
+    "🏵": 6199287891613456848,
+    "🏹": 5400239883669239075,
+    "🐈": 6199580271512131870,
+    "🐯": 5402331107540628027,
+    "👘": 5400027544781092239,
+    "👫": 5258352014093486972,
+    "👸": 5400062535879652171,
+    "💃": 5400314886683128649,
+    "💆‍♀️": 6199553196038297664,
+    "💌": 6201706585266330081,
+    "💨": 5400332332840286310,
+    "📖": 5400085256256648325,
+    "🔗": 6201716652669670801,
+    "🔯": 6199576397451630483,
+    "🕊️": 6201895843000227932,
+    "🗓": 5257977213772400201,
+    "🗝": 6199608386368051697,
+    "😀": 6199248167460936399,
+    "😂": 5400162750351570903,
+    "😄": 5402407403339674132,
+    "😇": 5402545838725560949,
+    "😌": 5402607621830112803,
+    "😝": 5402103654662567745,
+    "😡": 6201608664306948062,
+    "😢": 5260373762573897624,
+    "😴": 5400099927864932110,
+    "😷": 5402194592005123817,
+    "🚲": 5402543141486098607,
+    "🛴": 5402176639041833647,
+    "🛵": 5400297419051138151,
+    "🟢": 5258089552936994416,
+    "🤑": 6199644970899479965,
+    "🤓": 5399936482884481004,
+    "🤕": 5400089486799434628,
+    "🤠": 5258194028016472323,
+    "🤤": 6199426090776139399,
+    "🤥": 6199570582065912276,
+    "🤧": 5402086195620509507,
+    "🤬": 5258416679121095440,
+    "🤭": 5399835267685186112,
+    "🥇": 5258439725915606836,
+    "🥢": 6199256010071218331,
+    "🥲": 6199340191430221857,
+    "🥴": 5400140940507641551,
+    "🦊": 5402613888187398318,
+    "🧐": 5400041486244933592,
+    "🩶": 5262924805643995469,
+    "🪙": 5258474691244361770,
+    "🪶": 5258200264308982106,
+    "🫣": 6199270088974015791,
+    "🫰": 6201459963949227179,
+    "🫵": 6199371982778145122,
+})
 
 if PREMIUM_EMOJI:
     try:
@@ -887,11 +969,206 @@ def safe_int(value, default=0):
         return default
 
 
+# ══════════════════════════════════════════════════════════════
+#     ⚡  ʀɪᴄʜ ᴜɪ ᴇɴɢɪɴᴇ  —  poora bot card rich text me
+# ══════════════════════════════════════════════════════════════
+# Ye eor()/aedit() ke andar baithta hai. Matlab har command ka card —
+# menu, category page, list, status — sab rich message (headings + tables)
+# + premium emoji + coloured buttons me render hota hai.
+#   RICH_UI=1  → force on      RICH_UI=0 → off
+#   auto (default) → account premium hai to on, warna purana plain UI
+_RICH_UI = (os.environ.get("RICH_UI") or "auto").strip().lower()
+_UI_STATE: Dict[str, Any] = {"on": None}
+
+
+async def _ui_rich_ok():
+    """ek hi baar premium check — baad me cache."""
+    if _RICH_UI in ("0", "off", "false", "no"):
+        return False
+    if not RICH_READY:
+        return False
+    if _UI_STATE["on"] is None:
+        try:
+            me = await bot.get_me()
+            _UI_STATE["on"] = bool(getattr(me, "premium", False)
+                                   or getattr(me, "bot", False))
+        except Exception:
+            _UI_STATE["on"] = False
+        print("[RICH UI] %s — %s" % (
+            "ON" if _UI_STATE["on"] else "OFF (plain UI)",
+            "premium account" if _UI_STATE["on"] else "RICH_UI=1 se force kar sakte ho"))
+    return bool(_UI_STATE["on"])
+
+
+def _ui_blocks(text, docs):
+    """purana rail panel → rich blocks (heading + table + divider)."""
+    blocks, cells = [], []
+
+    def flush():
+        if cells:
+            blocks.append(types.PageBlockTable(
+                title=types.TextEmpty(), rows=list(cells),
+                bordered=True, striped=True))
+            cells.clear()
+
+    for raw in str(text).split("\n"):
+        s = raw.strip()
+        if not s:
+            flush()
+            continue
+
+        # masthead  ┏━ 👑 Nik Userbot 🔥
+        if s[0] in "┏╭":
+            flush()
+            title = s.lstrip("┏╭━─ ").strip()
+            if title:
+                blocks.append(types.PageBlockTitle(text=_rt(title, docs)))
+            continue
+
+        # bottom  ┗━━━━
+        if s[0] in "┗╰" or (set(s) <= set("┗━─╯")):
+            flush()
+            blocks.append(types.PageBlockDivider())
+            continue
+
+        if s[0] in "┃│":
+            body = s[1:].strip()
+            if not body:
+                flush()
+                continue
+            # section header  🎼 ▰ voice chat ▰ 11
+            if "▰" in body:
+                flush()
+                blocks.append(types.PageBlockHeading2(
+                    text=_rt(body.replace("▰", " ").strip(), docs)))
+                continue
+            # command row  .vplay ‣ saved file bajao
+            if "‣" in body:
+                a, b = body.split("‣", 1)
+                cells.append(types.PageTableRow(cells=[
+                    types.PageTableCell(text=_rt(a.strip(), docs)),
+                    types.PageTableCell(text=_rt(b.strip(), docs)),
+                ]))
+                continue
+            flush()
+            blocks.append(types.PageBlockParagraph(text=_rt(body, docs)))
+            continue
+
+        flush()
+        blocks.append(types.PageBlockParagraph(text=_rt(s, docs)))
+
+    flush()
+    return blocks[:ART_BLOCKS]
+
+
+def _ui_btn(label, url, color):
+    return types.PageButton(
+        text=types.TextConcat(texts=[types.TextPlain("\u2009"), types.TextPlain(label),
+                                     types.TextPlain("\u2009")]),
+        type=types.InlineButtonTypeUrl(url=url),
+        style=_art_style(color))
+
+
+def _ui_buttons(text, docs):
+    """card ke niche premium coloured buttons."""
+    t = str(text)
+    urls = []
+    ch = SAVED_CHANNEL if isinstance(SAVED_CHANNEL, (str, int)) else None
+    if ch:
+        s = str(ch)
+        urls.append(s if s.startswith("http") else "https://t.me/%s" % s.lstrip("@"))
+    owner_url = "https://t.me/%s" % OWNER_TAG.lstrip("@")
+    urls.append(owner_url)
+    if not urls:
+        return None
+    if "powered by" not in t and "menu" not in t.lower():
+        return None
+
+    specs = [("🪶 OWNER 🪶", urls[0] if urls else owner_url, "blue"),
+             ("🪶 SUPPORT 🪶", owner_url, "green"),
+             ("🪶 CHANNEL 🪶", urls[0], "red")][:max(2, min(len(urls) + 1, 3))]
+    seen, btns = set(), []
+    for label, url, color in specs:
+        if url in seen:
+            continue
+        seen.add(url)
+        btns.append(_ui_btn(label, url, color))
+    if not btns:
+        return None
+    return types.PageBlockButtonRow(buttons=btns[:8])
+
+
+class _UiMsg:
+    """rich card ka halka wrapper — .edit() / .delete() kaam karte hain."""
+    __slots__ = ("event", "chat_id", "id", "_plain")
+
+    def __init__(self, event, chat_id, mid, plain):
+        self.event = event
+        self.chat_id = chat_id
+        self.id = mid
+        self._plain = plain
+
+    async def edit(self, text=None, **kw):
+        got = await _ui_render(self.event, self.id, text or "", kw)
+        if got is not None:
+            return got
+        try:
+            return await self.event.edit(text, **kw)
+        except Exception:
+            return None
+
+    async def delete(self):
+        try:
+            await self.event.delete()
+        except Exception:
+            pass
+
+    def __getattr__(self, name):
+        return getattr(self._plain, name) if self._plain is not None else None
+
+
+async def _ui_render(event, mid, text, kw=None):
+    """text → rich message edit. fail hone pe None (plain fallback)."""
+    if not text or not await _ui_rich_ok():
+        return None
+    try:
+        docs = set()
+        blocks = _ui_blocks(text, docs)
+        if len(blocks) < 2:
+            return None
+        row = _ui_buttons(text, docs)
+        if row is not None:
+            blocks = blocks[:-1] + [row] if type(blocks[-1]).__name__ == "PageBlockDivider" else blocks + [row]
+        rich = types.InputRichMessage(blocks=blocks)
+        if docs:
+            rich.documents = await _rich_docs(docs)
+        peer = None
+        try:
+            peer = await event.get_input_chat()
+        except Exception:
+            peer = None
+        if peer is None:
+            peer = await bot.get_input_entity(getattr(event, "chat_id", None))
+        await bot(functions.messages.EditMessageRequest(
+            peer=peer, id=mid, message="", rich_message=rich))
+        return _UiMsg(event, getattr(event, "chat_id", None), mid, None)
+    except Exception as _e:
+        if os.environ.get("RICH_DEBUG"):
+            print("[RICH UI]", type(_e).__name__, _e)
+        return None
+
+
 async def eor(event, text, **kw):
     """edit-or-reply → hamesha Message object (ya None)"""
     if not text:
         return None
     text = align_panel(text)
+    try:
+        _rich = await _ui_render(event, getattr(event, "id", None), text, kw)
+        if _rich is not None:
+            return _rich
+    except Exception:
+        pass
     try:
         uid = event.sender_id
         now = time.time()
@@ -917,8 +1194,10 @@ async def eor(event, text, **kw):
 
 
 async def aedit(msg, text, **kw):
-    """msg.edit() ke liye — align_panel ke saath (border kabhi na toote)"""
+    """msg.edit() ke liye — rich card ho to rich, warna plain."""
     try:
+        if isinstance(msg, _UiMsg):
+            return await msg.edit(align_panel(text), **kw)
         return await msg.edit(align_panel(text), **kw)
     except Exception:
         return None
@@ -1946,6 +2225,9 @@ _MENU = [
         ("weather", "ᴍᴏsᴀᴍ"),
         ("ip", "ɪᴘ ʟᴏᴏᴋᴜᴘ"),
         ("short", "ᴜʀʟ sʜᴏʀᴛᴇɴ"),
+        ("article", "ʀɪᴄʜ ᴀʀᴛɪᴄʟᴇ"),
+        ("design", "ᴘʀᴇᴍɪᴜᴍ ᴛᴇᴍᴘʟᴀᴛᴇ"),
+        ("richui", "ʀɪᴄʜ ᴜɪ ᴏɴ/ᴏꜰꜰ"),
     ]),
     (f"{E['key']} {sb('notes')}", [
         ("notesadd", "ɴᴏᴛᴇ sᴀᴠᴇ"),
@@ -3507,6 +3789,45 @@ async def _grab(event, arg, cmd):
         path = _nice
     except Exception:
         pass
+    # ── article me inline media (photo / video / document)
+    ext = os.path.splitext(path)[1].lower()
+    if ext in (".jpg", ".jpeg", ".png", ".webp"):
+        kind = "photo"
+    elif ext in (".mp4", ".mkv", ".webm", ".mov"):
+        kind = "video"
+    else:
+        kind = "doc"
+    dur = int((info or {}).get("duration") or 0)
+    try:
+        size_mb = round(os.path.getsize(path) / (1024 * 1024), 1)
+    except Exception:
+        size_mb = 0
+    rows = [("type", kind),
+            ("size", f"{size_mb} mb" if size_mb else "—"),
+            ("duration", _mmss(dur) if dur else "—"),
+            ("source", cmd)]
+    src_url = str((info or {}).get("webpage_url") or arg or "")[:200]
+    btns = []
+    if src_url.startswith("http"):
+        btns.append(("🪶 ORIGINAL 🪶", src_url, "blue"))
+    btns.append(("🪶 SUPPORT 🪶", "https://t.me/%s" % OWNER_TAG.lstrip("@"), "green"))
+    cover = None if kind == "photo" else _art_cover((info or {}).get("thumbnail"))
+    sent_rich = await rich_media(
+        event, path, kind=kind, title=title[:110],
+        subtitle=f"{E['wand']} {sc('downloaded via')} {mono('.' + cmd)}",
+        rows=rows, video=({"duration": dur} if kind == "video" else None),
+        fname=title, buttons=btns, cover=cover)
+    if cover:
+        try:
+            os.remove(cover)
+        except Exception:
+            pass
+    if sent_rich:
+        try:
+            await event.delete()
+        except Exception:
+            pass
+        return
     try:
         await bot.send_file(event.chat_id, path, caption=f"{E['wand']} {title}\n{FOOT}")
         try:
@@ -5472,17 +5793,44 @@ async def cmd_music(event, arg):
                 path = nice
             except Exception:
                 pass
-            caption = (f"{E['note']} {title[:90]}\n"
-                       f"{E['dot']} {sc('duration')} ‣ {mono(_mmss(dur))}   "
-                       f"{sc('quality')} ‣ {mono('mp3/opus')}\n"
-                       f"{E['spark']} {sc('powered by')} {OWNER_TAG}")
+            # ── article me inline audio (file alag attach nahi hoti)
+            size_kb = 0
             try:
-                await bot.send_file(event.chat_id, path, voice_note=voice,
-                                    caption=caption, title=title,
-                                    performer="Nik Userbot", duration=dur,
-                                    supports_streaming=True)
+                size_kb = os.path.getsize(path) // 1024
             except Exception:
-                await bot.send_file(event.chat_id, path, caption=caption)
+                pass
+            rows = [
+                ("duration", _mmss(dur) if dur else "—"),
+                ("quality", "mp3 / opus"),
+                ("size", (f"{size_kb} kb" if size_kb else "—")),
+                ("source", (str((info or {}).get("webpage_url") or "")[:34] or "search")),
+            ]
+            btns = [("🪶 SUPPORT 🪶", "https://t.me/%s" % OWNER_TAG.lstrip("@"), "green"),
+                    ("🪶 OWNER 🪶", "https://t.me/%s" % OWNER_TAG.lstrip("@"), "blue")]
+            cover = _art_cover((info or {}).get("thumbnail"))
+            sent_rich = await rich_media(
+                event, path, kind="audio", title=title[:110],
+                subtitle=f"🎶 {sc('now playing')}", rows=rows,
+                audio={"duration": dur, "title": title[:64],
+                       "performer": "Nik Userbot", "voice": voice},
+                fname=title, buttons=btns, cover=cover)
+            if cover:
+                try:
+                    os.remove(cover)
+                except Exception:
+                    pass
+            if not sent_rich:
+                caption = (f"{E['note']} {title[:90]}\n"
+                           f"{E['dot']} {sc('duration')} ‣ {mono(_mmss(dur))}   "
+                           f"{sc('quality')} ‣ {mono('mp3/opus')}\n"
+                           f"{E['spark']} {sc('powered by')} {OWNER_TAG}")
+                try:
+                    await bot.send_file(event.chat_id, path, voice_note=voice,
+                                        caption=caption, title=title,
+                                        performer="Nik Userbot", duration=dur,
+                                        supports_streaming=True)
+                except Exception:
+                    await bot.send_file(event.chat_id, path, caption=caption)
             try:
                 await event.delete()
             except Exception:
@@ -7999,6 +8347,1229 @@ async def cmd_killall(event, arg):
         sub(""),
         sub(f" {E['warn']} {sc('vc bhi band')} {E['dot']} {mono('.startvc')} {sc('se dobara')}"),
         sub(FOOT), close()]))
+
+
+# ══════════════════════════════════════════════════════════════
+#        📜  ᴀʀᴛɪᴄʟᴇ  ·  ʀɪᴄʜ ᴍᴇꜱꜱᴀɢᴇꜱ  (layer 227+)
+# ══════════════════════════════════════════════════════════════
+# Telegram ka naya Rich Text Editor (July 2026, Premium) protocol me
+# message.rich_message + messages.sendMessage.rich_message ke roop me
+# aata hai. Content = PageBlock* ka tree, andar RichText* nodes.
+#   • 32,768 chars · 500 blocks · 16 level nest · 50 media · 20 columns
+#   • TextCustomEmoji(document_id, alt) → article ke ANDAR premium emoji
+#   • bhejne ke liye account Premium (bots exempt); padhne ke liye nahi
+ART_LIMIT  = 32768
+ART_BLOCKS = 500
+ART_COLS   = 20
+ART_EMOJI_CAP = 90
+
+RICH_READY = all(hasattr(types, _n) for _n in (
+    "InputRichMessage", "InputRichMessageMarkdown", "InputRichMessageHTML",
+    "RichMessage", "PageBlockParagraph", "PageBlockHeading1",
+    "PageBlockTable", "PageTableRow", "PageTableCell",
+    "PageBlockDetails", "PageBlockMath", "TextPlain", "TextConcat",
+    "TextCustomEmoji", "InputSendMessageRichMessageDraftAction"))
+
+_RICH_EMOJI_RX = None
+if PREMIUM_EMOJI and _NIK_EMOJI_IDS:
+    try:
+        _RICH_EMOJI_RX = re.compile("(" + "|".join(
+            re.escape(_k) for _k in sorted(_NIK_EMOJI_IDS, key=len, reverse=True)) + ")")
+    except Exception:
+        _RICH_EMOJI_RX = None
+
+
+def _rt_join(parts):
+    """RichText nodes ko jodo — single ho to wahi, warna TextConcat."""
+    clean = []
+    for p in parts:
+        if p is None:
+            continue
+        if isinstance(p, types.TextPlain) and not p.text:
+            continue
+        if isinstance(p, types.TextConcat):
+            clean.extend(p.texts)
+            continue
+        clean.append(p)
+    if not clean:
+        return types.TextPlain("")
+    if len(clean) == 1:
+        return clean[0]
+    return types.TextConcat(texts=clean)
+
+
+def _rt_inline(s, docs):
+    """inline markup → RichText list. **b** *i* ~~s~~ ||sp|| `c` $m$ [t](url)"""
+    out, buf, i, n = [], [], 0, len(s)
+
+    def _flush():
+        if buf:
+            out.append(types.TextPlain("".join(buf)))
+            buf.clear()
+
+    while i < n:
+        ch = s[i]
+
+        # [label](url)
+        if ch == "[":
+            j = s.find("](", i)
+            k = s.find(")", j + 2) if j != -1 else -1
+            if j != -1 and k != -1:
+                _flush()
+                try:
+                    out.append(types.TextUrl(
+                        text=_rt_join(_rt_inline(s[i + 1:j], docs)),
+                        url=s[j + 2:k], webpage_id=0))
+                except Exception:
+                    buf.append(s[i:k + 1])
+                i = k + 1
+                continue
+
+        hit = False
+        for mark, kind in (("**", "b"), ("__", "i"), ("~~", "s"),
+                           ("||", "sp"), ("`", "c")):
+            if s.startswith(mark, i):
+                close = s.find(mark, i + len(mark))
+                if close > i + len(mark):
+                    inner = s[i + len(mark):close]
+                    if kind == "c":
+                        node = types.TextFixed(text=_rt_join(_rt_inline(inner, docs)))
+                    else:
+                        node = _rt_join(_rt_inline(inner, docs))
+                        if kind == "b":
+                            node = types.TextBold(text=node)
+                        elif kind == "i":
+                            node = types.TextItalic(text=node)
+                        elif kind == "s":
+                            node = types.TextStrike(text=node)
+                        else:
+                            node = types.TextSpoiler(text=node)
+                    _flush()
+                    out.append(node)
+                    i = close + len(mark)
+                    hit = True
+                    break
+        if hit:
+            continue
+
+        # $inline math$
+        if ch == "$" and not s.startswith("$$", i):
+            close = s.find("$", i + 1)
+            if close > i + 1:
+                _flush()
+                out.append(types.TextMath(source=s[i + 1:close]))
+                i = close + 1
+                continue
+
+        buf.append(ch)
+        i += 1
+
+    _flush()
+    return out
+
+
+def _rt(s, docs):
+    """text → RichText, premium emoji ko TextCustomEmoji me badal ke."""
+    if not s:
+        return types.TextPlain("")
+    if not isinstance(s, str):
+        return types.TextPlain(str(s))
+    nodes, pos = [], 0
+    if _RICH_EMOJI_RX is not None:
+        for m in _RICH_EMOJI_RX.finditer(s):
+            if len(docs) >= ART_EMOJI_CAP:
+                break
+            if m.start() > pos:
+                nodes.extend(_rt_inline(s[pos:m.start()], docs))
+            emo = m.group()
+            did = _NIK_EMOJI_IDS.get(emo)
+            if did:
+                nodes.append(types.TextCustomEmoji(document_id=did, alt=emo))
+                docs.add(did)
+            else:
+                nodes.append(types.TextPlain(emo))
+            pos = m.end()
+    if pos < len(s):
+        nodes.extend(_rt_inline(s[pos:], docs))
+    return _rt_join(nodes)
+
+
+ART_LINK = "https://t.me/Nikkkwa"
+
+
+def _art_style(color):
+    """button ka rang — blue / red / green / link."""
+    c = (color or "").strip().lower()
+    if c in ("red", "danger", "r", "no"):
+        return types.RichButtonStyle(bg_danger=True)
+    if c in ("green", "success", "g", "ok"):
+        return types.RichButtonStyle(bg_success=True)
+    if c in ("link", "plain", "none", "flat"):
+        return types.RichButtonStyle(link=True)
+    return types.RichButtonStyle(bg_primary=True)
+
+
+_ART_TPL_ROWS = {
+    "vault": [
+        ("💎", "premium set"), ("🪶", "exclusive"),
+        ("🦋", "new collection"), ("🎀", "vip picks"),
+        ("🔐", "vip vault"), ("🎁", "free gift"),
+    ],
+    "menu": [
+        ("🎶", "music"), ("📼", "video"),
+        ("🔮", "ai tools"), ("🎧", "voice chat"),
+        ("🪄", "automation"), ("🔐", "notes"),
+    ],
+    "drop": [
+        ("🔥", "fresh drop"), ("💎", "premium set"),
+        ("🪶", "exclusive"), ("🎁", "free gift"),
+        ("⚡", "instant"), ("👑", "vip only"),
+    ],
+}
+
+_ART_TPL_BTNS = {
+    "vault": [("blue", "🪶 WATCH NOW 🪶"), ("red", "🪶 OPEN CHAT 🪶"),
+              ("green", "🪶 JOIN FREE 🪶"), ("red", "🪶 CLICK HERE 🪶"),
+              ("green", "🪶 OPEN LINK 🪶"), ("blue", "🪶 EXPLORE 🪶")],
+    "menu": [("blue", "🪶 START NOW 🪶"), ("green", "🪶 JOIN CHAT 🪶"),
+             ("red", "🪶 SUPPORT 🪶")],
+    "drop": [("blue", "🪶 GRAB NOW 🪶"), ("green", "🪶 JOIN FREE 🪶"),
+             ("red", "🪶 VIP ACCESS 🪶")],
+}
+
+_ART_TPL_TAG = {
+    "vault": ("💎 premium collection · fresh drops daily · instant access",
+              "⚡ click below to unlock ⚡"),
+    "menu": ("⚡ all in one · music · vc · tools · automation ⚡",
+             "⚡ choose your section ⚡"),
+    "drop": ("🔥 new drop live · limited time · instant delivery 🔥",
+             "⚡ grab it before it's gone ⚡"),
+    "links": ("⚡ saare links ek jagah · tap karo ⚡", ""),
+}
+
+_ART_TPL_NAMES = ("vault", "menu", "drop", "links")
+
+
+def _art_tpl(name, title, urls):
+    """premium design templates — seedha article source."""
+    uu = [u for u in (urls or []) if u]
+
+    def u(k):
+        return uu[k] if k < len(uu) else ART_LINK
+
+    name = (name or "").lower()
+    if name not in _ART_TPL_NAMES:
+        return ""
+    t = title or "NIK VAULT"
+    nl = "\n"
+
+    if name == "links":
+        rows = []
+        labels = ["🪶 OPEN LINK", "🪶 JOIN NOW", "🪶 WATCH NOW",
+                  "🪶 EXPLORE", "🪶 SUPPORT", "🪶 MORE"]
+        colors = ["blue", "green", "red", "blue", "green", "red"]
+        for k in range(max(len(uu), 1)):
+            if k >= 6:
+                break
+            rows.append("[[btn:%s]] %s 🪶 | %s" % (colors[k], labels[k], u(k)))
+        head = "# ⚡ " + t + " ⚡" + nl + nl
+        sub_ = "> " + _ART_TPL_TAG["links"][0] + nl + nl
+        tail = nl + "---" + nl + nl + "*⚡ powered by " + OWNER_TAG + " ⚡*"
+        return head + sub_ + nl.join(rows) + tail
+
+    cells = _ART_TPL_ROWS[name]
+    grid = []
+    for k in range(0, len(cells), 2):
+        a = cells[k]
+        b = cells[k + 1]
+        grid.append("|%s  %s|%s  %s|" % (a[0], a[1], b[0], b[1]))
+
+    btns = ["[[btn:%s]] %s | %s" % (c, label, u(i))
+            for i, (c, label) in enumerate(_ART_TPL_BTNS[name])]
+
+    head = "# ⚡ " + t + " ⚡" + nl + nl
+    sub_ = "> " + _ART_TPL_TAG[name][0] + nl + nl
+    grid_s = nl.join(grid) + nl + nl
+    cta = "### " + _ART_TPL_TAG[name][1] + nl + nl
+    btns_s = nl.join(btns) + nl + nl
+    tail = "---" + nl + nl + "*⚡ powered by " + OWNER_TAG + " ⚡*"
+    return head + sub_ + grid_s + cta + btns_s + tail
+
+
+def _art_tpl_card():
+    return "\n".join([
+        top(hero=("📜", "⚡")),
+        sub(""),
+        sub(f" {E['bolt']} {sc('premium templates')} {E['dot']} {sc('rich design')}"),
+        sub(""),
+        sub(f" {E['dot']} {mono('.article tpl vault <title>')} {sc('grid + 6 buttons')}"),
+        sub(f" {E['dot']} {mono('.article tpl menu <title>')} {sc('menu card')}"),
+        sub(f" {E['dot']} {mono('.article tpl drop <title>')} {sc('drop card')}"),
+        sub(f" {E['dot']} {mono('.article tpl links <title>')} {sc('links only')}"),
+        sub(""),
+        sub(f" {E['note']} {sc('urls')} {E['arrow']} {mono('title | url1 | url2 ...')}"),
+        sub(f" {E['dot']} {sc('url na do')} {E['arrow']} {mono(ART_LINK)}"),
+        sub(""),
+        sub(f" {E['spark']} {sc('premium emoji + colour buttons automatic')}"),
+        sub(FOOT),
+        close(),
+    ])
+
+
+def _art_blocks(src, docs):
+    """article source → PageBlock list (composer ke saare blocks)."""
+    blocks, lines = [], (src or "").replace("\r\n", "\n").replace("\r", "\n").split("\n")
+    i, n = 0, len(lines)
+
+    def _cell(txt, hdr):
+        """cell: [c]/[r]/[m]/[b] alignment · <<N colspan · ^^N rowspan"""
+        t = (txt or "").strip()
+        kw = {}
+        if t.startswith("[c]"):
+            kw["align_center"] = True
+            t = t[3:].strip()
+        elif t.startswith("[r]"):
+            kw["align_right"] = True
+            t = t[3:].strip()
+        elif t.startswith("[m]"):
+            kw["valign_middle"] = True
+            t = t[3:].strip()
+        elif t.startswith("[b]"):
+            kw["valign_bottom"] = True
+            t = t[3:].strip()
+        m = re.search(r"<<(\d+)\s*$", t)
+        if m:
+            kw["colspan"] = max(1, min(ART_COLS, int(m.group(1))))
+            t = t[:m.start()].rstrip()
+        m = re.search(r"\^\^(\d+)\s*$", t)
+        if m:
+            kw["rowspan"] = max(1, min(ART_BLOCKS, int(m.group(1))))
+            t = t[:m.start()].rstrip()
+        if hdr:
+            kw["header"] = True
+        return types.PageTableCell(text=_rt(t, docs), **kw)
+
+    while i < n:
+        raw = lines[i]
+        s = raw.strip()
+        if not s:
+            i += 1
+            continue
+
+        # ── title / subtitle / kicker  (composer ka "Add title")
+        m = re.match(r"^@(title|sub|subtitle|kick|kicker|header)\s+(.*)$", s, re.I)
+        if m:
+            kind = m.group(1).lower()
+            cls = {"title": "PageBlockTitle", "sub": "PageBlockSubtitle",
+                   "subtitle": "PageBlockSubtitle", "kick": "PageBlockKicker",
+                   "kicker": "PageBlockKicker", "header": "PageBlockHeader"}[kind]
+            blocks.append(getattr(types, cls)(text=_rt(m.group(2), docs)))
+            i += 1
+            continue
+
+        # ── code fence
+        if s.startswith("```"):
+            lang = s[3:].strip()
+            j, buf = i + 1, []
+            while j < n and not lines[j].strip().startswith("```"):
+                buf.append(lines[j])
+                j += 1
+            blocks.append(types.PageBlockPreformatted(
+                text=types.TextPlain("\n".join(buf)), language=lang))
+            i = j + 1
+            continue
+
+        # ── divider
+        if s in ("---", "***", "___"):
+            blocks.append(types.PageBlockDivider())
+            i += 1
+            continue
+
+        # ── heading
+        m = re.match(r"^(#{1,6})\s+(.*)$", s)
+        if m:
+            lvl = len(m.group(1))
+            blocks.append(getattr(types, "PageBlockHeading%d" % lvl)(
+                text=_rt(m.group(2), docs)))
+            i += 1
+            continue
+
+        # ── math block  $$ ... $$
+        if s.startswith("$$"):
+            body = s[2:]
+            if body.rstrip().endswith("$$") and len(body.strip()) > 2:
+                blocks.append(types.PageBlockMath(source=body.rstrip()[:-2].strip()))
+                i += 1
+                continue
+            j, buf = i + 1, [body]
+            while j < n and "$$" not in lines[j]:
+                buf.append(lines[j])
+                j += 1
+            if j < n:
+                buf.append(lines[j].split("$$")[0])
+                j += 1
+            blocks.append(types.PageBlockMath(source="\n".join(buf).strip()))
+            i = j
+            continue
+
+        # ── toggle / details  ::: Title ... :::
+        if s.startswith(":::") or s == "??":
+            title = s[3:].strip() if s.startswith(":::") else ""
+            j, buf = i + 1, []
+            while j < n and not (lines[j].strip().startswith(":::") or lines[j].strip() == "??"):
+                buf.append(lines[j])
+                j += 1
+            blocks.append(types.PageBlockDetails(
+                blocks=_art_blocks("\n".join(buf), docs),
+                title=_rt(title or "more", docs), open=False))
+            i = j + 1
+            continue
+
+        # ── quote
+        if s.startswith(">"):
+            buf = []
+            while i < n and lines[i].strip().startswith(">"):
+                buf.append(lines[i].strip().lstrip(">").strip())
+                i += 1
+            blocks.append(types.PageBlockBlockquote(
+                text=_rt(" ".join(buf), docs), caption=types.TextEmpty()))
+            continue
+
+        # ── table
+        if s.startswith("|") and s.endswith("|"):
+            raw_rows, sep_at = [], None
+            while i < n and lines[i].strip().startswith("|"):
+                cells = [c.strip() for c in lines[i].strip().strip("|").split("|")]
+                if cells and all(re.fullmatch(r":?-{2,}:?", c) for c in cells):
+                    sep_at = len(raw_rows)
+                    i += 1
+                    continue
+                raw_rows.append(cells)
+                i += 1
+            rows = []
+            for k, cells in enumerate(raw_rows):
+                hdr = sep_at is not None and k < sep_at
+                rows.append(types.PageTableRow(cells=[
+                    _cell(c, hdr) for c in cells[:ART_COLS]]))
+            if rows:
+                blocks.append(types.PageBlockTable(
+                    title=types.TextEmpty(), rows=rows,
+                    bordered=True, striped=True))
+            continue
+
+        # ── buttons
+        mb = re.match(r"^\[\[(?:btn|button)(?::([a-z]+))?\]\]\s*(.+)$", s, re.I)
+        if mb:
+            buttons = []
+            while i < n:
+                mm = re.match(r"^\[\[(?:btn|button)(?::([a-z]+))?\]\]\s*(.+)$",
+                              lines[i].strip(), re.I)
+                if not mm:
+                    break
+                bits = [x.strip() for x in mm.group(2).split("|")]
+                label = bits[0]
+                url = bits[1] if len(bits) > 1 else ""
+                if not url:
+                    i += 1
+                    continue
+                if url.lower().startswith(("http", "tg://", "mailto:")):
+                    btype = types.InlineButtonTypeUrl(url=url)
+                else:
+                    btype = types.InlineButtonTypeCallback(data=url.encode()[:60])
+                buttons.append(types.PageButton(
+                    text=_rt(label, docs), type=btype,
+                    style=_art_style(mm.group(1) or "blue")))
+                i += 1
+            if buttons:
+                blocks.append(types.PageBlockButtonRow(buttons=buttons[:8]))
+            continue
+
+        # ── ordered list
+        if re.match(r"^\d+[.)]\s+", s):
+            items = []
+            while i < n:
+                mm = re.match(r"^(\d+)[.)]\s+(.*)$", lines[i].strip())
+                if not mm:
+                    break
+                items.append(types.PageListOrderedItemText(
+                    text=_rt(mm.group(2), docs), num=mm.group(1)))
+                i += 1
+            blocks.append(types.PageBlockOrderedList(items=items, type="1"))
+            continue
+
+        # ── checklist  - [x] done
+        if re.match(r"^[-*+]\s+\[[ xX]\]\s+", s):
+            items = []
+            while i < n:
+                mm = re.match(r"^[-*+]\s+\[([ xX])\]\s+(.*)$", lines[i].strip())
+                if not mm:
+                    break
+                items.append(types.PageListItemText(
+                    text=_rt(mm.group(2), docs), checkbox=True,
+                    checked=(mm.group(1).lower() == "x")))
+                i += 1
+            blocks.append(types.PageBlockList(items=items))
+            continue
+
+        # ── bullet list
+        if re.match(r"^[-*+]\s+", s):
+            items = []
+            while i < n:
+                mm = re.match(r"^[-*+]\s+(.*)$", lines[i].strip())
+                if not mm:
+                    break
+                items.append(types.PageListItemText(text=_rt(mm.group(1), docs)))
+                i += 1
+            blocks.append(types.PageBlockList(items=items))
+            continue
+
+        # ── paragraph
+        buf = [s]
+        i += 1
+        while i < n and lines[i].strip() and not re.match(
+                r"^(#{1,6}\s|@(title|sub|subtitle|kick|kicker|header)\s|[-*+]\s|\d+[.)]\s"
+                r"|>\s?|\||`{3}|:::|\?\?|\[\[|---$|\*\*\*$|___$|\$\$)",
+                lines[i].strip(), re.I):
+            buf.append(lines[i].strip())
+            i += 1
+        blocks.append(types.PageBlockParagraph(text=_rt(" ".join(buf), docs)))
+
+    return blocks[:ART_BLOCKS]
+
+
+def _rt_flat(rt):
+    """RichText → plain string (read / preview ke liye)."""
+    if rt is None:
+        return ""
+    t = type(rt)
+    if t is types.TextPlain:
+        return rt.text
+    if t is types.TextEmpty:
+        return ""
+    if t is types.TextConcat:
+        return "".join(_rt_flat(x) for x in rt.texts)
+    if t is types.TextCustomEmoji:
+        return rt.alt
+    if t is types.TextUrl:
+        return "%s (%s)" % (_rt_flat(rt.text), rt.url)
+    if t is types.TextMath:
+        return "$%s$" % rt.source
+    if t is types.TextImage:
+        return "🖼"
+    inner = getattr(rt, "text", None)
+    if inner is not None:
+        return _rt_flat(inner)
+    return ""
+
+
+def _art_flat(blocks, depth=0):
+    """RichMessage blocks → markdown-ish text."""
+    out = []
+    for b in blocks or []:
+        name = type(b).__name__
+        if name.startswith("PageBlockHeading"):
+            out.append("#" * int(name[-1]) + " " + _rt_flat(getattr(b, "text", None)))
+        elif name == "PageBlockParagraph":
+            out.append(_rt_flat(b.text))
+        elif name == "PageBlockPreformatted":
+            out.append("```%s\n%s\n```" % (getattr(b, "language", "") or "", _rt_flat(b.text)))
+        elif name == "PageBlockDivider":
+            out.append("---")
+        elif name == "PageBlockMath":
+            out.append("$$%s$$" % b.source)
+        elif name == "PageBlockBlockquote":
+            out.append("> " + _rt_flat(b.text))
+        elif name == "PageBlockPullquote":
+            out.append("> " + _rt_flat(b.text))
+        elif name == "PageBlockThinking":
+            out.append(_rt_flat(b.text))
+        elif name == "PageBlockList":
+            for it in b.items:
+                out.append("• " + _rt_flat(getattr(it, "text", None)))
+        elif name == "PageBlockOrderedList":
+            for k, it in enumerate(b.items, 1):
+                out.append("%s. %s" % (getattr(it, "num", None) or k,
+                                       _rt_flat(getattr(it, "text", None))))
+        elif name == "PageBlockTable":
+            for row in b.rows:
+                out.append("| " + " | ".join(_rt_flat(c.text) for c in row.cells) + " |")
+        elif name == "PageBlockDetails":
+            out.append("::: " + _rt_flat(b.title))
+            out.append(_art_flat(b.blocks, depth + 1))
+            out.append(":::")
+        elif name == "PageBlockButtonRow":
+            out.append(" · ".join(_rt_flat(getattr(btn, "text", None)) for btn in b.buttons))
+        elif getattr(b, "caption", None) is not None:
+            cap = getattr(b.caption, "text", None)
+            if cap is not None:
+                out.append(_rt_flat(cap))
+    return "\n".join(x for x in out if x)
+
+
+async def _rich_docs(ids):
+    """custom emoji document ids → InputDocument list (article ke documents)."""
+    if not ids:
+        return []
+    try:
+        got = await bot(functions.messages.GetCustomEmojiDocumentsRequest(
+            document_id=list(ids)[:100]))
+        return [types.InputDocument(id=d.id, access_hash=d.access_hash,
+                                    file_reference=d.file_reference) for d in got]
+    except Exception:
+        return []
+
+
+async def _rich_premium():
+    """(premium?, me) — article bhejne ki permission."""
+    try:
+        me = await bot.get_me()
+        return bool(getattr(me, "premium", False) or getattr(me, "bot", False)), me
+    except Exception:
+        return False, None
+
+
+async def _art_photo(event, reply):
+    """replied photo → InputPhoto (article ke andar lagane ke liye)."""
+    if reply is None or getattr(reply, "photo", None) is None:
+        return None
+    try:
+        buf = await reply.download_media(file=BytesIO())
+        if buf is None:
+            return None
+        data = buf.getvalue() if hasattr(buf, "getvalue") else buf
+        up = await bot.upload_file(BytesIO(data), file_name="article.jpg")
+        peer = await event.get_input_chat() or await bot.get_input_entity(event.chat_id)
+        res = await bot(functions.messages.UploadMediaRequest(
+            peer=peer, media=types.InputMediaUploadedPhoto(file=up)))
+        ph = getattr(res, "photo", None)
+        if ph is None:
+            return None
+        return types.InputPhoto(id=ph.id, access_hash=ph.access_hash,
+                                file_reference=ph.file_reference)
+    except Exception:
+        return None
+
+
+async def _art_build(source, mode="blocks"):
+    """source → InputRichMessage (+ documents)."""
+    docs = set()
+    if mode == "md":
+        return types.InputRichMessageMarkdown(markdown=source)
+    if mode == "html":
+        return types.InputRichMessageHTML(html=source)
+    blocks = _art_blocks(source, docs)
+    if not blocks:
+        blocks = [types.PageBlockParagraph(text=types.TextPlain(source))]
+    rich = types.InputRichMessage(blocks=blocks)
+    if docs:
+        rich.documents = await _rich_docs(docs)
+    return rich
+
+
+async def _art_send(event, source, mode="blocks", reply_to=None,
+                    edit_id=None, draft=False, photo=None, media=None):
+    """asli send — raw SendMessageRequest / EditMessageRequest / setTyping."""
+    rich = await _art_build(source, mode)
+    if photo is not None:
+        rich = await _art_add_photo(rich, photo)
+    if media is not None:
+        blk, phs, dcs = media
+        if isinstance(rich, types.InputRichMessage):
+            try:
+                if blk is not None:
+                    rich.blocks.insert(0, blk)
+                if phs:
+                    rich.photos = list(phs) + list(getattr(rich, "photos", None) or [])
+                if dcs:
+                    rich.documents = list(dcs) + list(getattr(rich, "documents", None) or [])
+            except Exception:
+                pass
+    peer = await event.get_input_chat()
+    if peer is None:
+        peer = await bot.get_input_entity(event.chat_id)
+
+    if draft:
+        await bot(functions.messages.SetTypingRequest(
+            peer=peer,
+            action=types.InputSendMessageRichMessageDraftAction(
+                rich_message=rich, random_id=random.getrandbits(62))))
+        return None
+
+    if edit_id:
+        return await bot(functions.messages.EditMessageRequest(
+            peer=peer, id=edit_id, message="", rich_message=rich))
+
+    return await bot(functions.messages.SendMessageRequest(
+        peer=peer, message="", rich_message=rich,
+        random_id=random.getrandbits(62), reply_to=reply_to))
+
+
+def _art_ok(text):
+    """article ka source theek hai?"""
+    if not text or not text.strip():
+        return False, "khaali article"
+    if len(text) > ART_LIMIT:
+        return False, "limit se zyada (%d > %d)" % (len(text), ART_LIMIT)
+    return True, ""
+
+
+async def _art_reply_media(event, reply):
+    """reply ki media → (block, photos, documents) article ke andar lagane ke liye."""
+    if reply is None:
+        return None, [], []
+    try:
+        cap = types.PageCaption(text=types.TextEmpty(), credit=types.TextEmpty())
+        if getattr(reply, "photo", None) is not None:
+            buf = await reply.download_media(file=BytesIO())
+            if buf is None:
+                return None, [], []
+            path = os.path.join(TEMP_PATH, "art_ph_%d.jpg" % random.getrandbits(32))
+            open(path, "wb").write(buf.getvalue() if hasattr(buf, "getvalue") else buf)
+            ph = await _art_up_photo(event, path)
+            try:
+                os.remove(path)
+            except Exception:
+                pass
+            if ph is None:
+                return None, [], []
+            return (types.PageBlockPhoto(photo_id=ph.id, caption=cap), [ph], [])
+
+        kind = None
+        if getattr(reply, "video", None) is not None:
+            kind = "video"
+        elif getattr(reply, "audio", None) is not None:
+            kind = "audio"
+        elif getattr(reply, "voice", None) is not None:
+            kind = "audio"
+        elif getattr(reply, "document", None) is not None:
+            kind = "doc"
+        if kind is None:
+            return None, [], []
+
+        path = await reply.download_media(file=TEMP_PATH)
+        if not path:
+            return None, [], []
+        audio = {"duration": int(getattr(getattr(reply, "audio", None), "duration", 0)
+                                 or getattr(getattr(reply, "voice", None), "duration", 0) or 0),
+                 "title": (getattr(reply, "file", None) and
+                           getattr(reply.file, "name", "") or "")[:64],
+                 "performer": OWNER_TAG}
+        video = {"duration": int(getattr(getattr(reply, "video", None), "duration", 0) or 0)}
+        doc = await _art_up_doc(event, path, audio=(audio if kind == "audio" else None),
+                                video=(video if kind == "video" else None))
+        try:
+            os.remove(path)
+        except Exception:
+            pass
+        if doc is None:
+            return None, [], []
+        if kind == "audio":
+            blk = types.PageBlockAudio(audio_id=doc.id, caption=cap)
+        elif kind == "video":
+            blk = types.PageBlockVideo(video_id=doc.id, caption=cap)
+        else:
+            blk = types.PageBlockDocument(document_id=doc.id, caption=cap)
+        return blk, [], [doc]
+    except Exception:
+        return None, [], []
+
+
+async def _art_add_photo(rich, photo):
+    """article ke upar cover photo (composer jaisa inline media)."""
+    if photo is None or not isinstance(rich, types.InputRichMessage):
+        return rich
+    try:
+        cap = types.PageCaption(text=types.TextEmpty(), credit=types.TextEmpty())
+        rich.blocks.insert(0, types.PageBlockPhoto(photo_id=photo.id, caption=cap))
+        rich.photos = [photo]
+    except Exception:
+        pass
+    return rich
+
+
+# ══════════════════════════════════════════════════════════════
+#   📎  ʀɪᴄʜ ᴍᴇᴅɪᴀ  —  media + article ek hi message me
+# ══════════════════════════════════════════════════════════════
+# Composer ka Article attachment: photo/video/audio/document article ke
+# ANDAR inline baithta hai (PageBlockPhoto/Video/Audio/Document), file
+# alag se attach nahi hoti — wahi block hi attachment hai.
+_ART_MIME = {
+    ".mp3": "audio/mpeg", ".m4a": "audio/mp4", ".ogg": "audio/ogg",
+    ".opus": "audio/opus", ".wav": "audio/wav", ".flac": "audio/flac",
+    ".mp4": "video/mp4", ".mkv": "video/x-matroska", ".webm": "video/webm",
+    ".mov": "video/quicktime", ".jpg": "image/jpeg", ".jpeg": "image/jpeg",
+    ".png": "image/png", ".webp": "image/webp", ".gif": "image/gif",
+    ".pdf": "application/pdf",
+}
+
+
+def _art_mime(path):
+    return _ART_MIME.get(os.path.splitext(str(path))[1].lower(),
+                         "application/octet-stream")
+
+
+async def _art_up_doc(event, path, *, audio=None, video=None, fname=None):
+    """local file → (InputDocument, upload_media_result)."""
+    peer = await event.get_input_chat()
+    if peer is None:
+        peer = await bot.get_input_entity(event.chat_id)
+    ext = os.path.splitext(str(path))[1].lower()
+    safe = re.sub(r'[\\/:*?"<>|]+', " ", fname or os.path.basename(str(path)))
+    safe = (safe or "nik")[:80]
+    if not safe.lower().endswith(ext):
+        safe += ext
+    attrs = [types.DocumentAttributeFilename(file_name=safe)]
+    if audio:
+        attrs.append(types.DocumentAttributeAudio(
+            duration=int(audio.get("duration") or 0),
+            title=(audio.get("title") or "")[:64] or None,
+            performer=(audio.get("performer") or OWNER_TAG)[:64],
+            voice=bool(audio.get("voice"))))
+    if video:
+        attrs.append(types.DocumentAttributeVideo(
+            duration=float(video.get("duration") or 0),
+            w=int(video.get("w") or 1280), h=int(video.get("h") or 720),
+            supports_streaming=True))
+    up = await bot.upload_file(path, file_name=safe)
+    res = await bot(functions.messages.UploadMediaRequest(
+        peer=peer,
+        media=types.InputMediaUploadedDocument(
+            file=up, mime_type=_art_mime(path), attributes=attrs,
+            force_file=bool(video is None and audio is None))))
+    doc = getattr(res, "document", None)
+    if doc is None:
+        return None
+    return types.InputDocument(id=doc.id, access_hash=doc.access_hash,
+                               file_reference=doc.file_reference)
+
+
+async def _art_up_photo(event, path):
+    """local image → InputPhoto."""
+    peer = await event.get_input_chat()
+    if peer is None:
+        peer = await bot.get_input_entity(event.chat_id)
+    up = await bot.upload_file(path, file_name="nik_cover.jpg")
+    res = await bot(functions.messages.UploadMediaRequest(
+        peer=peer, media=types.InputMediaUploadedPhoto(file=up)))
+    ph = getattr(res, "photo", None)
+    if ph is None:
+        return None
+    return types.InputPhoto(id=ph.id, access_hash=ph.access_hash,
+                            file_reference=ph.file_reference)
+
+
+def _art_cover(url):
+    """thumbnail → local file (article ke cover ke liye)."""
+    if not url or not str(url).startswith("http"):
+        return None
+    try:
+        r = requests.get(url, timeout=12)
+        if getattr(r, "status_code", 0) != 200 or not r.content:
+            return None
+        path = os.path.join(TEMP_PATH, "art_cover_%d.jpg" % random.getrandbits(32))
+        with open(path, "wb") as f:
+            f.write(r.content[:3_000_000])
+        return path if os.path.getsize(path) > 2000 else None
+    except Exception:
+        return None
+
+
+def _art_cap(text, docs):
+    return types.PageCaption(text=_rt(text or "", docs), credit=types.TextEmpty())
+
+
+async def rich_media(event, path=None, *, kind="doc", title="", subtitle="",
+                     rows=None, caption="", buttons=None, reply_to=None,
+                     audio=None, video=None, fname=None, cover=None,
+                     footer=True):
+    """media + article ek message me. fail → None (caller plain bhej de)."""
+    if not RICH_READY:
+        return None
+    if not await _ui_rich_ok():
+        return None
+    try:
+        docs = set()
+        blocks = []
+        photos_in, documents_in = [], []
+
+        # cover photo (music ka album art jaisa)
+        photo_in = None
+        if cover:
+            photo_in = await _art_up_photo(event, cover)
+            if photo_in is not None:
+                blocks.append(types.PageBlockPhoto(
+                    photo_id=photo_in.id, caption=_art_cap("", docs)))
+                photos_in.append(photo_in)
+
+        if title:
+            blocks.append(types.PageBlockTitle(text=_rt(title, docs)))
+        if subtitle:
+            blocks.append(types.PageBlockParagraph(text=_rt(subtitle, docs)))
+
+        if path:
+            if kind == "photo":
+                photo_in = photo_in or await _art_up_photo(event, path)
+                if photo_in is not None:
+                    blocks.append(types.PageBlockPhoto(
+                        photo_id=photo_in.id, caption=_art_cap(caption, docs)))
+                    photos_in.append(photo_in)
+            else:
+                doc = await _art_up_doc(event, path, audio=audio,
+                                        video=video, fname=fname)
+                if doc is None:
+                    return None
+                cap = _art_cap(caption, docs)
+                if kind == "audio":
+                    blocks.append(types.PageBlockAudio(
+                        audio_id=doc.id, caption=cap))
+                elif kind == "video":
+                    blocks.append(types.PageBlockVideo(
+                        video_id=doc.id, caption=cap, autoplay=False))
+                else:
+                    blocks.append(types.PageBlockDocument(
+                        document_id=doc.id, caption=cap))
+                documents_in.append(doc)
+        elif caption:
+            blocks.append(types.PageBlockParagraph(text=_rt(caption, docs)))
+
+        if rows:
+            blocks.append(types.PageBlockTable(
+                title=types.TextEmpty(),
+                rows=[types.PageTableRow(cells=[
+                    types.PageTableCell(text=_rt(a, docs)),
+                    types.PageTableCell(text=_rt(b, docs)),
+                ]) for a, b in rows if a],
+                bordered=True, striped=True))
+
+        if buttons:
+            bs = []
+            for label, url, color in buttons[:8]:
+                if not url:
+                    continue
+                bs.append(types.PageButton(
+                    text=_rt(label, docs),
+                    type=types.InlineButtonTypeUrl(url=url),
+                    style=_art_style(color)))
+            if bs:
+                blocks.append(types.PageBlockButtonRow(buttons=bs))
+
+        if footer:
+            blocks.append(types.PageBlockDivider())
+            blocks.append(types.PageBlockParagraph(
+                text=_rt("⚡ powered by " + OWNER_TAG + " ⚡", docs)))
+
+        if len(blocks) < 2:
+            return None
+
+        rich = types.InputRichMessage(blocks=blocks[:ART_BLOCKS])
+        docs_in = await _rich_docs(docs)
+        if photos_in:
+            rich.photos = photos_in
+        if documents_in or docs_in:
+            rich.documents = documents_in + docs_in
+
+        peer = await event.get_input_chat()
+        if peer is None:
+            peer = await bot.get_input_entity(event.chat_id)
+        await bot(functions.messages.SendMessageRequest(
+            peer=peer, message="", rich_message=rich,
+            random_id=random.getrandbits(62), reply_to=reply_to))
+        return True
+    except Exception as _e:
+        if os.environ.get("RICH_DEBUG"):
+            print("[RICH MEDIA]", type(_e).__name__, _e)
+        return None
+
+
+def _art_err(ex):
+    """error ko insaan ki bhasha me."""
+    s = str(ex)
+    low = s.lower()
+    if "premium" in low:
+        return "account premium nahi hai"
+    if "flood" in low:
+        return "flood wait — thodi der baad"
+    if "too_long" in low or "too long" in low:
+        return "article bahut lamba"
+    if "rich" in low and ("unsupport" in low or "invalid" in low):
+        return "server ne rich message reject kiya"
+    return err_txt(ex, 70)
+
+
+def _art_card():
+    return "\n".join([
+        top(hero=("📜", "✨")),
+        sub(""),
+        sub(f" {E['note']} {sc('article')}  {E['dot']}  {sc('rich messages')} {E['dot']} {mono('layer 227+')}"),
+        sub(""),
+        sub(f" {E['arrow']} {mono('.article')} {sc('text pe reply → article')}"),
+        sub(f" {E['dot']}  {mono('.article <text>')} {sc('seedha article')}"),
+        sub(f" {E['dot']}  {mono('.article md')} {sc('raw markdown')}"),
+        sub(f" {E['dot']}  {mono('.article html')} {sc('raw html')}"),
+        sub(f" {E['dot']}  {mono('.article demo')} {sc('sample article')}"),
+        sub(f" {E['dot']}  {mono('.article tpl')} {sc('premium design templates')}"),
+        sub(f" {E['dot']}  {mono('.article read')} {sc('reply → text nikalo')}"),
+        sub(f" {E['dot']}  {mono('.article edit <text>')} {sc('message ko article banao')}"),
+        sub(f" {E['dot']}  {mono('.article draft <text>')} {sc('live typing preview')}"),
+        sub(f" {E['dot']}  {mono('.article check')} {sc('premium + support')}"),
+        sub(""),
+        sub(f" {E['gem']} {sc('syntax')} {E['dot']} {sc('jaise composer me')}"),
+        sub(f" {E['dot']}  {mono('@title')} {sc('bada title')} {E['dot']} {mono('@sub')} {sc('subtitle')}"),
+        sub(f" {E['dot']}  {mono('#')} {sc('heading 1-6')} {E['dot']} {mono('- [x]')} {sc('checklist')}"),
+        sub(f" {E['dot']}  {mono('|')} {sc('table')} {E['dot']} {mono('[c] [r] <<2 ^^2')} {sc('align · merge')}"),
+        sub(f" {E['dot']}  {mono('-')} {sc('bullet')} {E['dot']} {mono('1.')} {sc('number')}"),
+        sub(f" {E['dot']}  {mono('>')} {sc('quote')} {E['dot']} {mono('```')} {sc('code')}"),
+        sub(f" {E['dot']}  {mono(':::')} {sc('toggle')} {E['dot']} {mono('$$')} {sc('math')} {E['dot']} {mono('---')} {sc('divider')}"),
+        sub(f" {E['dot']}  {mono('**b** *i* ~~s~~ ||sp||')}"),
+        sub(f" {E['eye']} {sc('photo pe reply')} {E['arrow']} {sc('article ke andar cover')}"),
+        sub(f" {E['spark']} {sc('premium emoji automatic')} {E['arrow']} {sc('article ke andar')}"),
+        sub(""),
+        sub(f" {E['warn']} {sc('bhejne ke liye account premium')} {E['dot']} {mono('bots exempt')}"),
+        sub(FOOT),
+        close(),
+    ])
+
+
+@register_cmd("article", "rich")
+async def cmd_article(event, arg):
+    """.article — Telegram rich message / article banane ke liye"""
+    if not RICH_READY:
+        return await eor(event, "\n".join([
+            top(hero=("📜", "✨")), sub(""),
+            sub(f" {E['no']} {sc('telethon purani hai')} {E['dot']} {mono('pip install -U telethon')}"),
+            sub(f" {E['dot']} {sc('chahiye')} {mono('telethon>=1.45')} {sc('(layer 229)')}"),
+            sub(""), sub(FOOT), close()]))
+
+    arg = (arg or "").strip()
+    low = arg.lower()
+    reply = await event.get_reply_message()
+
+    # ── koi arg nahi → card
+    if not arg and not reply:
+        return await eor(event, _art_card())
+
+    # ── check
+    if low in ("check", "status", "info"):
+        prem, me = await _rich_premium()
+        name = getattr(me, "first_name", None) or "—"
+        return await eor(event, "\n".join([
+            top(hero=("📜", "✨")), sub(""),
+            sub(f" {E['note']} {sc('rich message support')} {E['arrow']} "
+                f"{mono('ON' if RICH_READY else 'OFF')}"),
+            sub(f" {E['dot']} {sc('telethon')} {E['arrow']} {mono(__import__('telethon').__version__)}"),
+            sub(f" {E['dot']} {sc('account')} {E['arrow']} {mono(name)}"),
+            sub(f" {E['dot']} {sc('premium')} {E['arrow']} "
+                f"{mono('YES' if prem else 'NO')}"),
+            sub(f" {E['dot']} {sc('emoji ids')} {E['arrow']} {mono(str(len(_NIK_EMOJI_IDS)))}"),
+            sub(""),
+            sub(f" {E['dot']} {sc('limit')} {E['arrow']} {mono(str(ART_LIMIT))} {sc('chars')}"),
+            sub(f" {E['dot']} {sc('blocks')} {E['arrow']} {mono(str(ART_BLOCKS))} "
+                f"{E['dot']} {sc('table cols')} {mono(str(ART_COLS))}"),
+            sub(""),
+            sub(f" {E['warn'] if not prem else E['ok']} "
+                f"{sc('send karne ke liye premium chahiye') if not prem else sc('sab ready')}"),
+            sub(FOOT), close()]))
+
+    # ── stop draft
+    if low in ("stop", "cancel"):
+        try:
+            await bot(functions.messages.SetTypingRequest(
+                peer=await event.get_input_chat(),
+                action=types.SendMessageStopDraftAction(random_id=random.getrandbits(62))))
+        except Exception as e:
+            return await eor(event, f"{E['no']} {sc('stop fail')} {E['arrow']} {mono(_art_err(e))}")
+        return await eor(event, f"{E['ok']} {sc('draft rok diya')}")
+
+    prem, me = await _rich_premium()
+
+    # ── read
+    if low in ("read", "get", "show"):
+        if not reply:
+            return await eor(event, f"{E['warn']} {sc('article message pe reply karo')}")
+        rm = getattr(reply, "rich_message", None)
+        if rm is None:
+            return await eor(event, f"{E['no']} {sc('ye rich message nahi hai')}")
+        if getattr(rm, "part", False):
+            try:
+                got = await bot(functions.messages.GetRichMessageRequest(
+                    peer=await event.get_input_chat(), id=reply.id))
+                first = getattr(got, "messages", None)
+                if first:
+                    rm = getattr(first[0], "rich_message", rm) or rm
+            except Exception:
+                pass
+        txt = _art_flat(rm.blocks)
+        head = (f" {E['note']} {sc('blocks')} {mono(str(len(rm.blocks)))} "
+                f"{E['dot']} {sc('emoji')} {mono(str(len(getattr(rm, 'documents', []) or [])))}")
+        body = txt if len(txt) <= 3000 else txt[:3000] + "\n…"
+        return await eor(event, "\n".join([
+            top(hero=("📜", "✨")), sub(""), sub(head), sub(""),
+            sub(f" {E['dot']} {sc('text')} {E['arrow']}"), sub(""), body,
+            sub(""), sub(FOOT), close()]))
+
+    # ── demo
+    if low in ("demo", "sample", "test"):
+        arg = (
+            "# 📜 NIK ARTICLE\n\n"
+            "Telegram ka naya **Rich Text Editor** — ab bot se bhi.\n"
+            "Premium emoji 🔥💎✨ article ke andar automatic lag jaate hain.\n\n"
+            "## Features\n\n"
+            "- Heading 1-6\n- Table\n- Bullet + numbered list\n- Quote, code, math\n\n"
+            "## Rates\n\n"
+            "| Plan | Price | Days |\n|---|---|---|\n"
+            "| Basic | ₹99 | 30 |\n| Pro | **₹249** | 90 |\n\n"
+            "> Article ek hi message me — 32,768 characters tak.\n\n"
+            "```python\nprint('nik userbot')\n```\n\n"
+            "::: Andar chhupa text\nDetails block bhi kaam karta hai.\n:::\n\n"
+            "$$E = mc^2$$\n\n---\n\n"
+            "*Powered by @Nikkkwa*"
+        )
+        mode = "blocks"
+    else:
+        mode = "blocks"
+        tpl_mode = False
+        if low.startswith(("tpl", "design")):
+            rest = arg.split(None, 1)[1].strip() if " " in arg else ""
+            if not rest:
+                return await eor(event, _art_tpl_card())
+            parts = [x.strip() for x in rest.split("|")]
+            head = parts[0]
+            first = head.split()[0].lower() if head.split() else ""
+            if first in _ART_TPL_NAMES:
+                nm, ttl = first, head[len(first):].strip()
+            else:
+                nm, ttl = "vault", head
+            arg = _art_tpl(nm, ttl, [x for x in parts[1:] if x])
+            tpl_mode = True
+            mode = "blocks"
+            if not arg:
+                return await eor(event, _art_tpl_card())
+        elif low.startswith("md "):
+            mode, arg = "md", arg[3:].strip()
+        elif low.startswith("html "):
+            mode, arg = "html", arg[5:].strip()
+        elif low.startswith("edit "):
+            arg = arg[5:].strip()
+            if not reply:
+                return await eor(event, f"{E['warn']} {sc('jis message ko edit karna hai uspe reply')}")
+            ok, why = _art_ok(arg)
+            if not ok:
+                return await eor(event, f"{E['no']} {mono(why)}")
+            try:
+                await _art_send(event, arg, mode, edit_id=reply.id)
+            except Exception as e:
+                return await eor(event, f"{E['no']} {sc('edit fail')} {E['arrow']} {mono(_art_err(e))}")
+            return await eor(event, f"{E['ok']} {sc('message article ban gaya')}")
+        elif low.startswith("draft "):
+            arg = arg[6:].strip()
+            ok, why = _art_ok(arg)
+            if not ok:
+                return await eor(event, f"{E['no']} {mono(why)}")
+            if not prem:
+                return await eor(event, _art_premium_card())
+            try:
+                await _art_send(event, arg, mode, draft=True)
+            except Exception as e:
+                return await eor(event, f"{E['no']} {sc('draft fail')} {E['arrow']} {mono(_art_err(e))}")
+            return await eor(event, f"{E['ok']} {sc('draft stream ho raha hai')} {E['dot']} "
+                                    f"{mono('.article stop')} {sc('se roko')}")
+        elif arg.lower().startswith("md"):
+            mode = "md"
+            if reply and hasattr(reply, "message"):
+                arg = reply.raw_text or reply.message or ""
+
+    # ── source: reply se text/file
+    src = arg
+    if not src and reply:
+        doc = getattr(reply, "document", None)
+        fname = ""
+        if doc is not None:
+            for at in (getattr(doc, "attributes", None) or []):
+                fn = getattr(at, "file_name", None)
+                if fn:
+                    fname = fn
+                    break
+        if fname.lower().endswith((".md", ".markdown", ".txt")):
+            try:
+                data = await reply.download_media(file=BytesIO())
+                if hasattr(data, "getvalue"):
+                    src = data.getvalue().decode("utf-8", "ignore")
+            except Exception:
+                src = ""
+        if not src:
+            src = getattr(reply, "raw_text", None) or getattr(reply, "message", None) or ""
+
+    ok, why = _art_ok(src)
+    if not ok:
+        return await eor(event, f"{E['no']} {mono(why)} {E['dot']} "
+                                f"{mono(f'{len(src)}/{ART_LIMIT}')}")
+
+    if not prem:
+        return await eor(event, _art_premium_card())
+
+    reply_to = None
+    if (reply is not None and mode == "blocks" and src and arg
+            and not locals().get("tpl_mode", False)):
+        reply_to = types.InputReplyToMessage(reply_to_msg_id=reply.id)
+
+    try:
+        await _art_send(event, src, mode, reply_to=reply_to,
+                        photo=await _art_photo(event, reply),
+                        media=await _art_reply_media(event, reply))
+    except Exception as e:
+        return await eor(event, "\n".join([
+            top(hero=("📜", "✨")), sub(""),
+            sub(f" {E['no']} {sc('article nahi gaya')}"),
+            sub(f" {E['dot']} {mono(_art_err(e))}"),
+            sub(""),
+            sub(f" {E['warn']} {sc('premium check')} {E['arrow']} {mono('.article check')}"),
+            sub(FOOT), close()]))
+
+    try:
+        await event.message.delete()
+    except Exception:
+        pass
+
+
+@register_cmd("richui")
+async def cmd_rich(event, arg):
+    """.rich on/off/status — poore bot ka rich UI toggle"""
+    a = (arg or "").strip().lower()
+    if a in ("on", "1", "yes"):
+        _UI_STATE["on"] = True
+        return await eor(event, f"{E['ok']} {sc('rich ui')} {E['arrow']} {mono('ON')}")
+    if a in ("off", "0", "no"):
+        _UI_STATE["on"] = False
+        return await eor(event, f"{E['no']} {sc('rich ui')} {E['arrow']} {mono('OFF')}")
+    _UI_STATE["on"] = None
+    on = await _ui_rich_ok()
+    return await eor(event, "\n".join([
+        top(hero=("⚡", "💎")), sub(""),
+        sub(f" {E['bolt']} {sc('rich ui')} {E['arrow']} {mono('ON' if on else 'OFF')}"),
+        sub(f" {E['dot']} {sc('telethon')} {E['arrow']} {mono(__import__('telethon').__version__)}"),
+        sub(f" {E['dot']} {sc('emoji ids')} {E['arrow']} {mono(str(len(_NIK_EMOJI_IDS)))}"),
+        sub(""),
+        sub(f" {E['dot']} {mono('.rich on')} {E['dot']} {mono('.rich off')}"),
+        sub(FOOT), close()]))
+
+
+@register_cmd("design")
+async def cmd_design(event, arg):
+    """.design — premium article templates (shortcut)"""
+    return await cmd_article(event, ("tpl " + (arg or "")).strip())
+
+
+def _art_premium_card():
+    return "\n".join([
+        top(hero=("📜", "✨")), sub(""),
+        sub(f" {E['lock']} {sc('rich article bhejne ke liye')} "
+            f"{mono('Telegram Premium')} {sc('chahiye')}"),
+        sub(""),
+        sub(f" {E['dot']} {sc('padhna sab kar sakte hain')}"),
+        sub(f" {E['dot']} {sc('bhejna sirf premium / bot')}"),
+        sub(""),
+        sub(f" {E['note']} {sc('account premium karne ke baad')} {mono('.article <text>')}"),
+        sub(FOOT), close()])
 
 
 # ══════════════════════════════════════════════════════════════
