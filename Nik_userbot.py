@@ -59,9 +59,9 @@ def _env_int(name, default=0):
 # ╔══════════════════════════════════════════════════════════════╗
 # ║   ✏️  SIRF YAHAN VALUES PASTE KARO — baaki kuch nahi           ║
 # ╚══════════════════════════════════════════════════════════════╝
-PASTE_API_ID = 30969852               # ← apna API_ID (number)          e.g. 1234567
+PASTE_API_ID = 30969852                 # ← apna API_ID (number)          e.g. 1234567
 PASTE_API_HASH = "8ed99aef26527da34b0dd5e55885c11b"              # ← apna API_HASH (32 chars)      e.g. "32bdfcd4..."
-PASTE_OWNER_ID = 5076760701              # ← apna telegram user id         e.g. 5076760701
+PASTE_OWNER_ID = 5076760701               # ← apna telegram user id         e.g. 5076760701
 PASTE_SESSION_STRING = "1BVtsOJgBu8KHWXtbYuOH_1arq4GMOT3m-vonFPQmDqXWBWeK_bYCsFrA0ndEDU-P05R4wbS__d3w-fnhdOaqDs9FBLxjcSrWndhk5BC9pL5OL2qgaojtY01x7P-Chyk_PSvt_XfWmXyrpDW-e5FAqQApiJ4e3Ee7JaXvvTSYQfo0WSfpG5BcE6OQY3A72jBKprrExCQWNrA5gXCVk88Gs9_tDC0T4E6rS6d8lFgm6xKJedu4rPHn_vJTohYs65R48RWZCu-N4NmU5xuXp2OXHnGYUmlNCSstf-BEmnXoQoLdmnb3cFrgoI3eVTK-7x3maxriMEPBD51YI85e8cO4Xi2eWctX7OE="        # ← StringSession yahan           e.g. "1ApWapzMBuw..."
 
 # env var ho to wo jeetega, warna upar wali value use hogi
@@ -1131,21 +1131,47 @@ class _UiMsg:
         return getattr(self._plain, name) if self._plain is not None else None
 
 
+async def _ui_build(text):
+    """text → (InputRichMessage, ok). emoji docs na mile to plain rebuild."""
+    docs = set()
+    blocks = _ui_blocks(text, docs)
+    if not blocks:
+        return None, False
+    row = _ui_buttons(text, docs)
+    if row is not None:
+        blocks = (blocks[:-1] + [row]
+                  if type(blocks[-1]).__name__ == "PageBlockDivider"
+                  else blocks + [row])
+    docs_in = await _rich_docs(docs) if docs else []
+    if docs and len(docs_in) < len(docs):
+        # kuch documents resolve nahi hue → emoji ke bina dobara banao
+        _rm_log("emoji docs", RuntimeError("%d/%d resolve" % (len(docs_in), len(docs))))
+        tok = _RICH_PLAIN.set(True)
+        try:
+            docs2 = set()
+            blocks = _ui_blocks(text, docs2)
+            row2 = _ui_buttons(text, docs2)
+            if row2 is not None:
+                blocks = (blocks[:-1] + [row2]
+                          if type(blocks[-1]).__name__ == "PageBlockDivider"
+                          else blocks + [row2])
+            docs_in = []
+        finally:
+            _RICH_PLAIN.reset(tok)
+    rich = types.InputRichMessage(blocks=blocks)
+    if docs_in:
+        rich.documents = docs_in
+    return rich, True
+
+
 async def _ui_render(event, mid, text, kw=None):
-    """text → rich message edit. fail hone pe None (plain fallback)."""
+    """text → rich edit. edit fail ho to naya rich message + purana delete."""
     if not text or not await _ui_rich_ok():
         return None
     try:
-        docs = set()
-        blocks = _ui_blocks(text, docs)
-        if not blocks:
+        rich, ok = await _ui_build(text)
+        if not ok or rich is None:
             return None
-        row = _ui_buttons(text, docs)
-        if row is not None:
-            blocks = blocks[:-1] + [row] if type(blocks[-1]).__name__ == "PageBlockDivider" else blocks + [row]
-        rich = types.InputRichMessage(blocks=blocks)
-        if docs:
-            rich.documents = await _rich_docs(docs)
         peer = None
         try:
             peer = await event.get_input_chat()
@@ -1153,12 +1179,30 @@ async def _ui_render(event, mid, text, kw=None):
             peer = None
         if peer is None:
             peer = await bot.get_input_entity(getattr(event, "chat_id", None))
-        await bot(functions.messages.EditMessageRequest(
-            peer=peer, id=mid, message="", rich_message=rich))
-        return _UiMsg(event, getattr(event, "chat_id", None), mid, None)
+
+        # ── plan A: usi message ko article bana do
+        try:
+            await bot(functions.messages.EditMessageRequest(
+                peer=peer, id=mid, message="", rich_message=rich))
+            return _UiMsg(event, getattr(event, "chat_id", None), mid, None)
+        except Exception as _e1:
+            _rm_log("edit", _e1)
+
+        # ── plan B: naya rich message bhejo, command message uda do
+        try:
+            await bot(functions.messages.SendMessageRequest(
+                peer=peer, message="", rich_message=rich,
+                random_id=random.getrandbits(62)))
+            try:
+                await event.delete()
+            except Exception:
+                pass
+            return _UiMsg(event, getattr(event, "chat_id", None), mid, None)
+        except Exception as _e2:
+            _rm_log("send", _e2)
+            return None
     except Exception as _e:
-        if os.environ.get("RICH_DEBUG"):
-            print("[RICH UI]", type(_e).__name__, _e)
+        _rm_log("ui", _e)
         return None
 
 
@@ -8469,12 +8513,18 @@ def _rt_inline(s, docs):
     return out
 
 
+_RICH_PLAIN = contextvars.ContextVar("nik_rich_plain", default=False)
+
+
 def _rt(s, docs):
     """text → RichText, premium emoji ko TextCustomEmoji me badal ke."""
     if not s:
         return types.TextPlain("")
     if not isinstance(s, str):
         return types.TextPlain(str(s))
+    if _RICH_PLAIN.get():
+        # documents resolve nahi hue → custom emoji mat bhejo, plain text
+        return _rt_join(_rt_inline(s, docs))
     nodes, pos = [], 0
     if _RICH_EMOJI_RX is not None:
         for m in _RICH_EMOJI_RX.finditer(s):
@@ -8910,12 +8960,19 @@ def _art_flat(blocks, depth=0):
 _DOC_CACHE: Dict[int, Any] = {}
 
 
+_DOC_COOLDOWN = {"until": 0.0}
+
+
 async def _rich_docs(ids):
-    """custom emoji document ids → InputDocument list (cached)."""
+    """custom emoji document ids → InputDocument list (cached + retry)."""
     if not ids:
         return []
-    miss = [i for i in ids if i not in _DOC_CACHE]
-    if miss:
+    if time.time() < _DOC_COOLDOWN["until"]:
+        return []                      # server fail ho raha → fail-fast
+    for attempt in range(2):
+        miss = [i for i in ids if i not in _DOC_CACHE]
+        if not miss:
+            break
         try:
             got = await bot(functions.messages.GetCustomEmojiDocumentsRequest(
                 document_id=miss[:100]))
@@ -8923,9 +8980,26 @@ async def _rich_docs(ids):
                 _DOC_CACHE[d.id] = types.InputDocument(
                     id=d.id, access_hash=d.access_hash,
                     file_reference=d.file_reference)
-        except Exception:
-            pass
+            if not got:
+                break
+        except Exception as _e:
+            if attempt == 1:
+                _rm_log("emoji docs", _e)
+                _DOC_COOLDOWN["until"] = time.time() + 600   # 10 min skip
+            await asyncio.sleep(0.4 * (attempt + 1))
     return [_DOC_CACHE[i] for i in ids if i in _DOC_CACHE]
+
+
+_RICH_ERR_SEEN: Set[str] = set()
+
+
+def _rm_log(where, ex):
+    """rich fail hone pe console pe saaf batao (throttled)."""
+    key = "%s:%s" % (where, type(ex).__name__)
+    if key in _RICH_ERR_SEEN:
+        return
+    _RICH_ERR_SEEN.add(key)
+    print(f"[RICH ❌ {where}] {type(ex).__name__}: {str(ex)[:160]}")
 
 
 async def _rich_premium():
@@ -8969,9 +9043,19 @@ async def _art_build(source, mode="blocks"):
     blocks = _art_blocks(source, docs)
     if not blocks:
         blocks = [types.PageBlockParagraph(text=types.TextPlain(source))]
+    docs_in = await _rich_docs(docs) if docs else []
+    if docs and len(docs_in) < len(docs):
+        _rm_log("article docs", RuntimeError("%d/%d" % (len(docs_in), len(docs))))
+        tok = _RICH_PLAIN.set(True)
+        try:
+            docs = set()
+            blocks = _art_blocks(source, docs)
+        finally:
+            _RICH_PLAIN.reset(tok)
+        docs_in = []
     rich = types.InputRichMessage(blocks=blocks)
-    if docs:
-        rich.documents = await _rich_docs(docs)
+    if docs_in:
+        rich.documents = docs_in
     return rich
 
 
