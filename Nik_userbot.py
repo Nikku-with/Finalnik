@@ -59,10 +59,10 @@ def _env_int(name, default=0):
 # ╔══════════════════════════════════════════════════════════════╗
 # ║   ✏️  SIRF YAHAN VALUES PASTE KARO — baaki kuch nahi           ║
 # ╚══════════════════════════════════════════════════════════════╝
-PASTE_API_ID = 30969852                # ← apna API_ID (number)          e.g. 1234567
+PASTE_API_ID = 30969852               # ← apna API_ID (number)          e.g. 1234567
 PASTE_API_HASH = "8ed99aef26527da34b0dd5e55885c11b"              # ← apna API_HASH (32 chars)      e.g. "32bdfcd4..."
-PASTE_OWNER_ID = 5076760701               # ← apna telegram user id         e.g. 5076760701
-PASTE_SESSION_STRING = "1BVtsOMEBuxizrU8Ez4Psg_conXy6EBeoHbMhgw93ItcavnEIJmYlzuCg2_XYuTXwQtaoyEw2kzCFr-pUcw6L4gnqaVbPbm3BbDT9rJNQUb4Dpxt1c7gilej2K6gWjljCKPY0iogUvoUA6tFyWedAiIwdr3kSePkSAB369706BpmXkVFOOqOi-4Gs5UAHl5CWWPvwnEftpHuBDfORkkeprWZrrrtoiTsZkUeLx1S2oS7_rzEU87LqmoqOF8HOaY9mRiWXslAtbw2AdLGXx2qCqiSqf-dhgDvyrFiBXZGHQE8nvC87pg_jh-RG_pn6BFyoh3KEVdy_biZqXpFhCM-Je_LZ-vGbR9o="        # ← StringSession yahan           e.g. "1ApWapzMBuw..."
+PASTE_OWNER_ID = 5076760701              # ← apna telegram user id         e.g. 5076760701
+PASTE_SESSION_STRING = "1BVtsOJgBu8KHWXtbYuOH_1arq4GMOT3m-vonFPQmDqXWBWeK_bYCsFrA0ndEDU-P05R4wbS__d3w-fnhdOaqDs9FBLxjcSrWndhk5BC9pL5OL2qgaojtY01x7P-Chyk_PSvt_XfWmXyrpDW-e5FAqQApiJ4e3Ee7JaXvvTSYQfo0WSfpG5BcE6OQY3A72jBKprrExCQWNrA5gXCVk88Gs9_tDC0T4E6rS6d8lFgm6xKJedu4rPHn_vJTohYs65R48RWZCu-N4NmU5xuXp2OXHnGYUmlNCSstf-BEmnXoQoLdmnb3cFrgoI3eVTK-7x3maxriMEPBD51YI85e8cO4Xi2eWctX7OE="        # ← StringSession yahan           e.g. "1ApWapzMBuw..."
 
 # env var ho to wo jeetega, warna upar wali value use hogi
 API_ID = _env_int("API_ID", 0) or PASTE_API_ID
@@ -1058,6 +1058,12 @@ def _ui_blocks(text, docs):
         blocks.append(types.PageBlockParagraph(text=_rt(s, docs)))
 
     flush()
+    if not blocks:
+        return []
+    # masthead na ho to brand title upar lagao — har card article jaisa
+    if type(blocks[0]).__name__ != "PageBlockTitle":
+        brand = "%s NIK USERBOT %s" % (E["bolt"], E["spark"])
+        blocks.insert(0, types.PageBlockTitle(text=_rt(brand, docs)))
     return blocks[:ART_BLOCKS]
 
 
@@ -1080,8 +1086,6 @@ def _ui_buttons(text, docs):
     owner_url = "https://t.me/%s" % OWNER_TAG.lstrip("@")
     urls.append(owner_url)
     if not urls:
-        return None
-    if "powered by" not in t and "menu" not in t.lower():
         return None
 
     specs = [("🪶 OWNER 🪶", urls[0] if urls else owner_url, "blue"),
@@ -1134,7 +1138,7 @@ async def _ui_render(event, mid, text, kw=None):
     try:
         docs = set()
         blocks = _ui_blocks(text, docs)
-        if len(blocks) < 2:
+        if not blocks:
             return None
         row = _ui_buttons(text, docs)
         if row is not None:
@@ -2225,9 +2229,6 @@ _MENU = [
         ("weather", "ᴍᴏsᴀᴍ"),
         ("ip", "ɪᴘ ʟᴏᴏᴋᴜᴘ"),
         ("short", "ᴜʀʟ sʜᴏʀᴛᴇɴ"),
-        ("article", "ʀɪᴄʜ ᴀʀᴛɪᴄʟᴇ"),
-        ("design", "ᴘʀᴇᴍɪᴜᴍ ᴛᴇᴍᴘʟᴀᴛᴇ"),
-        ("richui", "ʀɪᴄʜ ᴜɪ ᴏɴ/ᴏꜰꜰ"),
     ]),
     (f"{E['key']} {sb('notes')}", [
         ("notesadd", "ɴᴏᴛᴇ sᴀᴠᴇ"),
@@ -8906,17 +8907,25 @@ def _art_flat(blocks, depth=0):
     return "\n".join(x for x in out if x)
 
 
+_DOC_CACHE: Dict[int, Any] = {}
+
+
 async def _rich_docs(ids):
-    """custom emoji document ids → InputDocument list (article ke documents)."""
+    """custom emoji document ids → InputDocument list (cached)."""
     if not ids:
         return []
-    try:
-        got = await bot(functions.messages.GetCustomEmojiDocumentsRequest(
-            document_id=list(ids)[:100]))
-        return [types.InputDocument(id=d.id, access_hash=d.access_hash,
-                                    file_reference=d.file_reference) for d in got]
-    except Exception:
-        return []
+    miss = [i for i in ids if i not in _DOC_CACHE]
+    if miss:
+        try:
+            got = await bot(functions.messages.GetCustomEmojiDocumentsRequest(
+                document_id=miss[:100]))
+            for d in got:
+                _DOC_CACHE[d.id] = types.InputDocument(
+                    id=d.id, access_hash=d.access_hash,
+                    file_reference=d.file_reference)
+        except Exception:
+            pass
+    return [_DOC_CACHE[i] for i in ids if i in _DOC_CACHE]
 
 
 async def _rich_premium():
@@ -9530,33 +9539,6 @@ async def cmd_article(event, arg):
     except Exception:
         pass
 
-
-@register_cmd("richui")
-async def cmd_rich(event, arg):
-    """.rich on/off/status — poore bot ka rich UI toggle"""
-    a = (arg or "").strip().lower()
-    if a in ("on", "1", "yes"):
-        _UI_STATE["on"] = True
-        return await eor(event, f"{E['ok']} {sc('rich ui')} {E['arrow']} {mono('ON')}")
-    if a in ("off", "0", "no"):
-        _UI_STATE["on"] = False
-        return await eor(event, f"{E['no']} {sc('rich ui')} {E['arrow']} {mono('OFF')}")
-    _UI_STATE["on"] = None
-    on = await _ui_rich_ok()
-    return await eor(event, "\n".join([
-        top(hero=("⚡", "💎")), sub(""),
-        sub(f" {E['bolt']} {sc('rich ui')} {E['arrow']} {mono('ON' if on else 'OFF')}"),
-        sub(f" {E['dot']} {sc('telethon')} {E['arrow']} {mono(__import__('telethon').__version__)}"),
-        sub(f" {E['dot']} {sc('emoji ids')} {E['arrow']} {mono(str(len(_NIK_EMOJI_IDS)))}"),
-        sub(""),
-        sub(f" {E['dot']} {mono('.rich on')} {E['dot']} {mono('.rich off')}"),
-        sub(FOOT), close()]))
-
-
-@register_cmd("design")
-async def cmd_design(event, arg):
-    """.design — premium article templates (shortcut)"""
-    return await cmd_article(event, ("tpl " + (arg or "")).strip())
 
 
 def _art_premium_card():
